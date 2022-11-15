@@ -1,0 +1,32 @@
+# This is Git's per-user configuration file.
+[help]
+	autoCorrect = 10
+[core]
+	pager = less
+[alias]
+	co = checkout
+	st = status
+	sup = submodule update --init
+	hist = log --pretty=format:'%h %ad | [%an] %s%d' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	amend = commit --amend --no-edit
+	diff = diff --minimal
+	stat = show --stat
+	pushup = push -u origin
+	pushupc = !git pushup $(git symbolic-ref --short HEAD)
+	pushd = push --delete origin
+	pushdc = !git pushd $(git symbolic-ref --short HEAD)
+	pushdupc = !git pushdc && git pushupc
+	force-pull = !br=$(git symbolic-ref --short HEAD) && git fetch && git co origin/$br && git branch -D $br && git co $br
+	sync-author = !FILTER_BRANCH_SQUELCH_WARNING=1 /usr/bin/git filter-branch -f --env-filter '. $HOME/bin/scripts/sync-author.sh' --tag-name-filter cat
+[credentials]
+	helper = store
+[pull]
+	ff = only
+[advice]
+	detachedHead = false
+[color "grep"]
+	linenumber = green bold
+	match = white red
+	filename = magenta
