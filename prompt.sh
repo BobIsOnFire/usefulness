@@ -28,7 +28,7 @@ function decorate { echo "${1}${2}$(reset)"; }
 # Process timer.
 
 function process_timer_start {
-	exec_start=$(date +%s.%N)
+	exec_start=${exec_start:-$(date +%s.%N)}
 }
 
 function process_timer_stop {
