@@ -7,6 +7,8 @@ set expandtab
 set number relativenumber
 set mouse=a
 set ruler
+set formatoptions-=t
+set whichwrap+=<,>,[,]
 colorscheme pablo
 
 set number
