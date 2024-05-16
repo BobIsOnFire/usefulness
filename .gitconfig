@@ -20,6 +20,7 @@
 	pushdupc = !git pushdc && git pushupc
 	force-pull = !br=$(git symbolic-ref --short HEAD) && git fetch && git co origin/$br && git branch -D $br && git co $br
 	sync-author = !FILTER_BRANCH_SQUELCH_WARNING=1 /usr/bin/git filter-branch -f --env-filter '. $HOME/bin/scripts/sync-author.sh' --tag-name-filter cat
+	ulog = !$HOME/gitlog-with-urls.sh
 [credentials]
 	helper = store
 [pull]
