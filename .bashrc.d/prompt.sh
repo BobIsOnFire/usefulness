@@ -138,7 +138,11 @@ function ps1_is_on_fire {
 	# 3. Time
 	system_time=$(date +%T)
 
-	# 4. Git status
+    # 4. Load average
+    load_arr=( $(cat /proc/loadavg) )
+    load="load: ${load_arr[0]}, ${load_arr[1]}, ${load_arr[2]} • threads: ${load_arr[3]}" 
+
+	# 5. Git status
 	unset git_status
 	if git rev-parse --git-dir &>/dev/null; then
 		repo=$(decorate "$(fgcolor ${color_repo})" "$(git_repo)@$(git_reference)")
@@ -148,7 +152,7 @@ function ps1_is_on_fire {
 
 	# Construct dashboard.
 
-	ps1_dashboard="${exec_status} • ${system_host} • ${system_time}"
+	ps1_dashboard="${exec_status} • ${system_host} • ${system_time} • ${load}"
 	test ! -z "${git_status}" && ps1_dashboard+=" • ${git_status}"
 
 	### CWD
