@@ -7,12 +7,9 @@ FILES += $(wildcard .bashrc.d/git-scripts/*.sh)
 
 all: $(patsubst %,$(HOME)/%,$(FILES))
 
-$(HOME)/%: % | $(dir $(HOME)/%)
+$(HOME)/%: %
 	@if [ -f $@.old ]; then echo '$@.old still exists, remove it and run make again'; false; fi  
-	cp $@ $@.old
+	mkdir -p $(@D)
+	if [ -f $@ ]; then cp $@ $@.old; fi
 	cp $< $@
 	@if cmp -s $@ $@.old; then rm $@.old; fi
-
-$(HOME) $(HOME)/.bashrc.d $(HOME)/.bashrc.d/git-scripts:
-	mkdir -p $@
-
