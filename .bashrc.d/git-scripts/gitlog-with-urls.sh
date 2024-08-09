@@ -38,8 +38,9 @@ NONGIT_OK=1 # otherwise next line fails if we're not in top-level git dir (why)
 
 # If we don't write to terminal that supports URLs, drop the wrapper and pass
 # execution to git-log proper
+# Changing directory to GIT_PREFIX because git aliases are always started in repository root
 if ! supports_ansi_links 1; then
-    exec git log "$@"
+    exec git -C ${GIT_PREFIX:-.} log "$@"
 fi
 
 # From git-sh-setup -- fail if we're not in git tree
@@ -118,4 +119,5 @@ test "${git_commit_link_regex}" && sed_args+=('-e' "${git_commit_link_regex}")
 test "${git_pr_link_regex}" && sed_args+=('-e' "${git_pr_link_regex}")
 
 # git_pager command is from git-sh-setup, it expands to logical GIT_PAGER or 'cat' if pager is not needed or explicitly ignored
-git log --color=always --decorate "$@" | sed "${sed_args[@]}" | git_pager
+# Changing directory to GIT_PREFIX because git aliases are always started in repository root
+git -C ${GIT_PREFIX:-.} log --color=always --decorate "$@" | sed "${sed_args[@]}" | git_pager
