@@ -9,7 +9,7 @@ set mouse=a
 set ruler
 set formatoptions-=t
 set whichwrap+=<,>,[,]
-colorscheme pablo
+colorscheme pablo-legacy
 
 set number
 
