@@ -7,12 +7,10 @@
     "spacing": 12, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad"
+        "niri/workspaces"
     ],
     "modules-center": [
-        "sway/window"
+        "niri/window"
     ],
     "modules-right": [
         //"idle_inhibitor",
@@ -23,7 +21,7 @@
         "memory",
         "temperature",
         //"backlight",
-        "sway/language",
+        "niri/language",
         //"battery",
         "clock",
         "tray",
@@ -54,16 +52,6 @@
             "locked": "",
             "unlocked": ""
         }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -212,13 +200,13 @@
         "tooltip": false,
         "format": "{icon} ({0})",
         "format-icons": {
-            "notification": "<sup></sup>",
+            "notification": "<sup>!</sup>",
             "none": "",
-            "dnd-notification": "<sup></sup>",
+            "dnd-notification": "<sup>!</sup>",
             "dnd-none": "",
-            "inhibited-notification": "<sup></sup>",
+            "inhibited-notification": "<sup>!</sup>",
             "inhibited-none": "",
-            "dnd-inhibited-notification": "<sup></sup>",
+            "dnd-inhibited-notification": "<sup>!</sup>",
             "dnd-inhibited-none": ""
         },
     "return-type": "json",

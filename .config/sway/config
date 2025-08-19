@@ -103,7 +103,9 @@ default_floating_border pixel 2
     bindsym $mod+Shift+e exec wlogout
 
     # Select region, take screenshot, copy to clipboard
-    bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+    bindsym $mod+Shift+s exec wayfreeze --after-freeze-cmd 'grim -g "$(slurp)" - | wl-copy; killall wayfreeze'
+    # Make a screenshot of entire screen
+    bindsym Print exec grim - | wl-copy
 
     # Lock screen on Win+L
     bindsym $mod+l exec swaylock -fkl -c 000000
@@ -241,9 +243,14 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bar swaybar_command waybar
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'swaylock -fkl -c 000000' \
          timeout 600 'swaymsg "output * power off"' \
               resume 'swaymsg "output * power on"' \
-        before-sleep 'swaylock -f -c 000000'
+        before-sleep 'swaylock -fkl -c 000000'
+
+#
+# ~ Funny ~
+#
+bindsym $mod+Shift+Ctrl+Alt+t exec xdg-open https://teams.microsoft.com
 
 include /etc/sway/config.d/*
